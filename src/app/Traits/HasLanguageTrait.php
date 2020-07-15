@@ -5,7 +5,9 @@ namespace VCComponent\Laravel\Language\Traits;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
+
 use VCComponent\Laravel\Language\Entities\Language;
+use VCComponent\Laravel\Language\Entities\Languageable;
 
 trait HasLanguageTrait
 {
@@ -63,6 +65,11 @@ trait HasLanguageTrait
     {
         $lagueconfig = config('app.locale');
         return $this->morphToMany(Language::class, 'languageable')->where('code', $lagueconfig)->withPivot('field', 'value')->withTimestamps();
+    }
+
+    public function translates()
+    {
+        return $this->hasMany(Languageable::class, 'languageable_id')->where('languageable_type','attributes');
     }
     public function attachLanguages($language_id, array $attributes = [])
     {

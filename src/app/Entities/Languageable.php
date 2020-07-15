@@ -1,6 +1,6 @@
 <?php
 
-namespace VCComponent\Laravel\Generator\Entities;
+namespace VCComponent\Laravel\Language\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 

@@ -18,9 +18,16 @@ class LanguageController extends ApiController
     protected $validator;
     public function __construct(LanguageRepository $repository, LanguageValidator $validator)
     {
-        $this->repository  = $repository;
-        $this->entity      = $repository->getEntity();
-        $this->validator   = $validator;
+        $this->repository = $repository;
+        $this->entity     = $repository->getEntity();
+        $this->validator  = $validator;
+        if (config('translate.auth_middleware.admin.middleware') !== '') {
+            $this->middleware(
+                config('translate.auth_middleware.admin.middleware'),
+                ['except' => config('translate.auth_middleware.admin.except')]
+            );
+        }
+
         $this->transformer = LanguageTransformer::class;
     }
     public function index(Request $request)
@@ -104,9 +111,6 @@ class LanguageController extends ApiController
 
         return $this->success();
     }
-
-
-
 
     // public function bulkUpdateStatus(Request $request)
     // {
