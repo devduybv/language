@@ -21,6 +21,7 @@ class LanguageServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../resources/sass/change-language.scss'   => base_path('/resources/sass/change-language/change-language.scss'),
             __DIR__ . '/../../resources/js/change-language.js'       => base_path('/resources/js/change-language/change-language.js'),
+            __DIR__ . '/../../resources/lang/vn'                     => base_path('/resources/lang/vn'),
         ]);
 
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'locale');
