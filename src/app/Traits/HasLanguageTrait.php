@@ -5,7 +5,6 @@ namespace VCComponent\Laravel\Language\Traits;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
-
 use VCComponent\Laravel\Language\Entities\Language;
 use VCComponent\Laravel\Language\Entities\Languageable;
 
@@ -69,7 +68,7 @@ trait HasLanguageTrait
 
     public function translates()
     {
-        return $this->hasMany(Languageable::class, 'languageable_id')->where('languageable_type','attributes');
+        return $this->hasMany(Languageable::class, 'languageable_id')->where('languageable_type', 'attributes');
     }
     public function attachLanguages($language_id, array $attributes = [])
     {
@@ -93,7 +92,6 @@ trait HasLanguageTrait
     }
     public function getField($field)
     {
-
         if (!$this->languages->count()) {
             return false;
         }
@@ -159,5 +157,20 @@ trait HasLanguageTrait
         } else {
             return ucfirst($value);
         }
+    }
+
+    public function getMetaFieldTranslate($field, $value)
+    {
+        $trans              = $this->getField($field);
+        $language_translate = $this->translate($value, $trans);
+        return $language_translate;
+    }
+
+    public function getValueAttribute($value)
+    {
+        $field = $this->key;
+        $trans = $this->getField($field);
+        $language_translate = $this->translate($value,$trans);
+        return $language_translate;
     }
 }
