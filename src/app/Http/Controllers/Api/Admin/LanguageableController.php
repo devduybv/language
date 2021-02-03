@@ -36,23 +36,6 @@ class LanguageableController extends ApiController
         return;
     }
 
-    public function index(Request $request)
-    {
-        $query      = $this->languageable_entity;
-        $query_meta = $this->languageable_entity;
-
-        $query_languageable = $this->applyConstraintsFromRequest($query, $request);
-        $languageable       = $query_languageable->get();
-
-        $query_languageable_meta = $this->applyMetaFromRequest($query_meta, $request);
-        if (!$query_languageable_meta) {
-            return $this->response->collection($languageable, $this->languageable_transformer);
-        }
-
-        $languageable_meta = $query_languageable_meta->get();
-        return $this->response->collection($languageable->merge($languageable_meta), $this->languageable_transformer);
-    }
-
     public function store(Request $request)
     {
         $data = $request->all();
@@ -77,5 +60,22 @@ class LanguageableController extends ApiController
                 ->where('language_id', $language_id)->update($value);
         }
         return $this->success();
+    }
+
+    public function list(Request $request)
+    {
+        $query      = $this->languageable_entity;
+        $query_meta = $this->languageable_entity;
+
+        $query_languageable = $this->applyConstraintsFromRequest($query, $request);
+        $languageable       = $query_languageable->get();
+
+        $query_languageable_meta = $this->applyMetaFromRequest($query_meta, $request);
+        if (!$query_languageable_meta) {
+            return $this->response->collection($languageable, $this->languageable_transformer);
+        }
+
+        $languageable_meta = $query_languageable_meta->get();
+        return $this->response->collection($languageable->merge($languageable_meta), $this->languageable_transformer);
     }
 }
