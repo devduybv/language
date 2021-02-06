@@ -1,6 +1,7 @@
 <?php
 namespace VCComponent\Laravel\Language\Http\Controllers\Api\Admin;
 
+use Exception;
 use Illuminate\Http\Request;
 use VCComponent\Laravel\Language\Repositories\LanguageableRepository;
 use VCComponent\Laravel\Language\Transformers\LanguageableTransformer;
@@ -40,6 +41,11 @@ class LanguageableController extends ApiController
     {
         $data = $request->all();
         foreach ($data as $value) {
+            $check_translate_exists = $this->languageable_repository->checkTranslateExists($value);
+            if ($check_translate_exists) {
+
+                throw new Exception('Bản dịch đã tồn tại');
+            }
             $this->languageable_repository->create($value);
         }
         return $this->success();
@@ -49,21 +55,13 @@ class LanguageableController extends ApiController
     {
         $data = $request->all();
         foreach ($data as $value) {
-            $languageable_id   = $value['languageable_id'];
-            $languageable_type = $value['languageable_type'];
-            $language_id       = $value['language_id'];
-            $field             = $value['field'];
-            $this->languageable_entity
-                ->where('languageable_id', $languageable_id)
-                ->where('languageable_type', $languageable_type)
-                ->where('field', $field)
-                ->where('language_id', $language_id)
-                ->update($value);
+            $this->languageable_repository->updateTranslateRecord($value);
         }
         return $this->success();
     }
 
-    function list(Request $request) {
+    public function list(Request $request)
+    {
         $query      = $this->languageable_entity;
         $query_meta = $this->languageable_entity;
 
