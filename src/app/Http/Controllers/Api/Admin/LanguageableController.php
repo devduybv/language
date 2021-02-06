@@ -57,13 +57,13 @@ class LanguageableController extends ApiController
                 ->where('languageable_id', $languageable_id)
                 ->where('languageable_type', $languageable_type)
                 ->where('field', $field)
-                ->where('language_id', $language_id)->update($value);
+                ->where('language_id', $language_id)
+                ->update($value);
         }
         return $this->success();
     }
 
-    public function list(Request $request)
-    {
+    function list(Request $request) {
         $query      = $this->languageable_entity;
         $query_meta = $this->languageable_entity;
 
