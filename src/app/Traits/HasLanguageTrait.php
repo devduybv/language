@@ -153,9 +153,9 @@ trait HasLanguageTrait
     public function translate($value, $trans)
     {
         if ($trans) {
-            return ucfirst($trans);
+            return $trans;
         } else {
-            return ucfirst($value);
+            return $value;
         }
     }
 
