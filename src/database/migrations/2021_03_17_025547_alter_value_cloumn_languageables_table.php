@@ -14,7 +14,7 @@ class AlterValueCloumnLanguageablesTable extends Migration
     public function up()
     {
         //
-        Schema::table('languageables', function(Blueprint $table){
+        Schema::table('languageables', function (Blueprint $table) {
             $table->text('value')->nullable()->change();
         });
     }
@@ -27,8 +27,8 @@ class AlterValueCloumnLanguageablesTable extends Migration
     public function down()
     {
         //
-        Schema::table('languageables', function(Blueprint $table){
-            $table->text('value')->nullable('false');
+        Schema::table('languageables', function (Blueprint $table) {
+            $table->text('value')->nullable(false)->change();
         });
     }
 }
