@@ -2,10 +2,10 @@
 
 namespace VCComponent\Laravel\Language\Repositories;
 
-use VCComponent\Laravel\Language\Repositories\LanguageRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 use VCComponent\Laravel\Language\Entities\Language;
+use VCComponent\Laravel\Language\Repositories\LanguageRepository;
 
 /**
  * Class AccountantRepositoryEloquent.

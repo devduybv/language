@@ -22,9 +22,9 @@ class LanguageServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
         $this->publishes([
             __DIR__ . '/../../resources/sass/change-language.scss' => base_path('/resources/sass/change-language/change-language.scss'),
-            __DIR__ . '/../../resources/js/change-language.js'     => base_path('/resources/js/change-language/change-language.js'),
-            __DIR__ . '/../../resources/lang/vn'                   => base_path('/resources/lang/vn'),
-            __DIR__ . '/../../config/language.php'                 => config_path('language.php'),
+            __DIR__ . '/../../resources/js/change-language.js' => base_path('/resources/js/change-language/change-language.js'),
+            __DIR__ . '/../../resources/lang/vn' => base_path('/resources/lang/vn'),
+            __DIR__ . '/../../config/language.php' => config_path('language.php'),
         ]);
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'locale');
     }
