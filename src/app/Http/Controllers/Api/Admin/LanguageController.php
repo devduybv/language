@@ -19,8 +19,8 @@ class LanguageController extends ApiController
     public function __construct(LanguageRepository $repository, LanguageValidator $validator)
     {
         $this->repository = $repository;
-        $this->entity     = $repository->getEntity();
-        $this->validator  = $validator;
+        $this->entity = $repository->getEntity();
+        $this->validator = $validator;
         if (config('translate.auth_middleware.admin.middleware') !== '') {
             $this->middleware(
                 config('translate.auth_middleware.admin.middleware'),
@@ -34,9 +34,9 @@ class LanguageController extends ApiController
     {
         $query = $this->entity;
 
-        $query    = $this->applyConstraintsFromRequest($query, $request);
-        $query    = $this->applySearchFromRequest($query, ['name'], $request);
-        $query    = $this->applyOrderByFromRequest($query, $request);
+        $query = $this->applyConstraintsFromRequest($query, $request);
+        $query = $this->applySearchFromRequest($query, ['name'], $request);
+        $query = $this->applyOrderByFromRequest($query, $request);
         $per_page = $request->has('per_page') ? (int) $request->get('per_page') : 15;
         $laguages = $query->paginate($per_page);
 
@@ -45,7 +45,7 @@ class LanguageController extends ApiController
     public function store(Request $request)
     {
         $this->validator->isValid($request, 'RULE_CREATE');
-        $data     = $request->all();
+        $data = $request->all();
         $language = $this->entity->create($data);
 
         return $this->response->item($language, new $this->transformer());
@@ -58,7 +58,7 @@ class LanguageController extends ApiController
             $transformer = new $this->transformer;
         }
 
-        $language = $this->repository->findById($request, $id);
+        $language = $this->repository->find($id);
 
         return $this->response->item($language, $transformer);
     }
@@ -86,7 +86,7 @@ class LanguageController extends ApiController
                 Rule::unique('languages')->ignore($id),
             ],
         ]);
-        $data     = $request->all();
+        $data = $request->all();
         $language = $this->repository->update($data, $id);
 
         return $this->response->item($language, new $this->transformer());

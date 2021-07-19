@@ -37,20 +37,20 @@ class LanguageableRepositoryEloquent extends BaseRepository implements Languagea
     public function checkTranslateExists($value)
     {
         return $this->getEntity()
-        ->where('languageable_type', $value['languageable_type'])
-        ->where('languageable_id', $value['languageable_id'])
-        ->where('language_id', $value['language_id'])
-        ->where('field', $value['field'])
-        ->exists();
+            ->where('languageable_type', $value['languageable_type'])
+            ->where('languageable_id', $value['languageable_id'])
+            ->where('language_id', $value['language_id'])
+            ->where('field', $value['field'])
+            ->exists();
     }
 
     public function updateTranslateRecord($value)
     {
-         $this->getEntity()
-        ->where('languageable_type', $value['languageable_type'])
-        ->where('languageable_id', $value['languageable_id'])
-        ->where('language_id', $value['language_id'])
-        ->where('field', $value['field'])
-        ->update($value);
+        $this->getEntity()
+            ->where('languageable_type', $value['languageable_type'])
+            ->where('languageable_id', $value['languageable_id'])
+            ->where('language_id', $value['language_id'])
+            ->where('field', $value['field'])
+            ->update($value);
     }
 }
