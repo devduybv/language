@@ -20,6 +20,15 @@ class LanguageableController extends ApiController
         $this->languageable_repository = $languageable_repository;
         $this->languageable_transformer = $languageable_transformer;
         $this->languageable_entity = $this->languageable_repository->getEntity();
+        if (config('translate.auth_middleware.admin.middleware') !== '') {
+            $this->middleware(
+                config('translate.auth_middleware.admin.middleware'),
+                ['except' => config('translate.auth_middleware.admin.except')]
+            );
+        }
+        else{
+            throw new Exception("Admin middleware configuration is required");
+        }
     }
 
     public function applyMetaFromRequest($query, $request)
