@@ -18,5 +18,7 @@ $api->version('v1', function ($api) {
             $data_language_list = config('language.languages');
             return $data_language_list;
         });
+        $api->resource('labels', 'VCComponent\Laravel\Language\Http\Controllers\Api\Admin\LabelController');
+
     });
 });

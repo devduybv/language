@@ -9,7 +9,10 @@
         "classmap": ["src/app/"],
         "psr-4": {
             "VCComponent\\Laravel\\Language\\": "src/app/"
-        }
+        },
+        "files": [
+            "src/app/Helpers/GetLabel.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

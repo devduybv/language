@@ -3,6 +3,8 @@
 namespace VCComponent\Laravel\Language\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use VCComponent\Laravel\Language\Repositories\LabelRepository;
+use VCComponent\Laravel\Language\Repositories\LabelRepositoryEloquent;
 use VCComponent\Laravel\Language\Repositories\LanguageableRepository;
 use VCComponent\Laravel\Language\Repositories\LanguageableRepositoryEloquent;
 use VCComponent\Laravel\Language\Repositories\LanguageRepository;
@@ -38,5 +40,7 @@ class LanguageServiceProvider extends ServiceProvider
     {
         $this->app->bind(LanguageRepository::class, LanguageRepositoryEloquent::class);
         $this->app->bind(LanguageableRepository::class, LanguageableRepositoryEloquent::class);
+        $this->app->bind(LabelRepository::class, LabelRepositoryEloquent::class);
+
     }
 }
