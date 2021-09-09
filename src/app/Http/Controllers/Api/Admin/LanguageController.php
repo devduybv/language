@@ -27,6 +27,9 @@ class LanguageController extends ApiController
                 ['except' => config('translate.auth_middleware.admin.except')]
             );
         }
+        else{
+            throw new Exception("Admin middleware configuration is required");
+        }
 
         $this->transformer = LanguageTransformer::class;
     }
