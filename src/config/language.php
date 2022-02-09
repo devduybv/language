@@ -8,4 +8,8 @@ return [
             "code"  => "en",
         ],
     ],
+    'list-language' => [
+        'vi',
+        'en',
+    ]
 ];
