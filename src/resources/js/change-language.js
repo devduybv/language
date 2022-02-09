@@ -1,41 +1,33 @@
 import $ from 'jquery';
 
-
-$(document).ready(function () {
-
-    var getflagclass = $('.lang.selected>.flag-icon').attr('class');
-    var datavalue = $('.lang.selected').attr('data-value');
-
-    $('.current_lang >.lang>.lang-txt').text(datavalue);
-    $('.current_lang >.lang>.flag-icon ').attr('class', getflagclass);
-
-
-
-    $('.translate_wrapper .current_lang').click(function (e) {
+document.addEventListener('DOMContentLoaded', function() {
+    var getflagclass = document.querySelector(".lang.selected>.flag-icon").getAttribute("class");
+    var datavalue = document.querySelector(".lang.selected").getAttribute("data-value");
+    document.querySelector(".current_lang >.lang>.lang-txt").innerText = datavalue;
+    document.querySelector(".current_lang >.lang>.flag-icon ").setAttribute("class", getflagclass);
+    $(".translate_wrapper .current_lang").click(function(e) {
         e.stopPropagation();
-        $(this).parent().toggleClass('active');
+        $(this).parent().toggleClass("active");
 
-        setTimeout(function () {
-            $('.more_lang').toggleClass('active');
+        setTimeout(function() {
+            document.querySelector(".more_lang").classList.toggle("active");
         }, 5);
     });
-    $(document).click(function (e) {
-        $('.translate_wrapper, .more_lang').removeClass('active');
-    });
-
     const url = window.location.origin;
-    $('.more_lang .lang').click(function () {
-        $(this).addClass('selected').siblings().removeClass('selected');
-        $('.more_lang').removeClass('active');
+    $(".more_lang .lang").click(function() {
+        $(this).addClass("selected").siblings().removeClass("selected");
+        document.querySelector(".more_lang").classList.remove("active");
 
-        var getflagclass = $(this).find('.flag-icon').attr('class');
-        var lang = $(this).attr('data-value');
+        var getflagclass = $(this).find(".flag-icon").attr("class");
+        var lang = $(this).attr("data-value");
 
-        $('.current_lang .lang-txt').text(lang);
-        $('.current_lang img').attr('class', getflagclass);
-
-        location.href = url + '/change-language/' + lang;
+        document.querySelector(".current_lang .lang-txt").innerText = lang;
+        if (document.querySelector(".current_lang img") !== null) {
+            document.querySelector(".current_lang img").setAttribute("class", getflagclass);
+        }
+        location.href = url + "/change-language/" + lang;
     });
-
-});
-
+    var lang = document.querySelector('.more_lang .selected').getAttribute('data-value');
+    document.querySelector('html').setAttribute('lang', lang);
+    document.querySelector('body').classList.add(lang);
+}, false);

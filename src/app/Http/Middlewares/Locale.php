@@ -2,7 +2,9 @@
 namespace VCComponent\Laravel\Language\Http\Middlewares;
 
 use Closure;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cookie;
+use VCComponent\Laravel\Language\Languages\Facades\Language;
 
 class Locale
 {
@@ -15,16 +17,27 @@ class Locale
      */
     public function handle($request, Closure $next)
     {
-        if(!Session::has('website_language')){
-            Session(['website_language' => config('app.locale')]);
+        if ($this->hasLanguageQueryParam($request)) {
+            $locale = $request->get('lang');
+        } elseif ($this->hasLanguageCookie()) {
+            $locale = Cookie::get('webpress_language');
         }
-
-        $language = Session::get('website_language', config('app.locale'));
-        // Lấy dữ liệu lưu trong Session, không có thì trả về default lấy trong config
-
-        config(['app.locale' => $language]);
-        // Chuyển ứng dụng sang ngôn ngữ được chọn
-
+        if (isset($locale)) {
+            App::setLocale($locale);
+        }
         return $next($request);
+    }
+
+    public function hasLanguageQueryParam($request)
+    {
+        return $request->has('lang') && $this->isValidLocale($request->get('lang'));
+    }
+    public function hasLanguageCookie()
+    {
+        return Cookie::has('webpress_language') && $this->isValidLocale(Cookie::get('webpress_language'));
+    }
+    public function isValidLocale($locale)
+    {
+        return in_array($locale, Language::getAvailableLanguages());
     }
 }

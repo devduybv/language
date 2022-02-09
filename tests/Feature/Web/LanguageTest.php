@@ -12,10 +12,10 @@ class LanguageTest extends TestCase
     /**
      * @test
      */
-    public function should_get_session_language_web()
+    public function should_get_cookie_language_web()
     {
         $response = $this->call('GET', 'change-language/en');
-        $response->assertSessionHas('website_language', 'en');
+        $response->assertCookie('webpress_language', 'en');
     }
 
 }

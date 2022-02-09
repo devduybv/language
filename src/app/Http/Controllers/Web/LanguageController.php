@@ -3,7 +3,7 @@
 namespace VCComponent\Laravel\Language\Http\Controllers\Web;
 
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Cookie;
 
 class LanguageController extends BaseController
 {
@@ -13,8 +13,8 @@ class LanguageController extends BaseController
     }
     public function changeLanguage($language)
     {
-        Session::put('website_language', $language);
-
+        Cookie::queue(Cookie::forever('webpress_language', $language));
         return redirect()->back();
+
     }
 }

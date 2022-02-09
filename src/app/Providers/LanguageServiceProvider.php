@@ -7,6 +7,8 @@ use VCComponent\Laravel\Language\Repositories\LanguageableRepository;
 use VCComponent\Laravel\Language\Repositories\LanguageableRepositoryEloquent;
 use VCComponent\Laravel\Language\Repositories\LanguageRepository;
 use VCComponent\Laravel\Language\Repositories\LanguageRepositoryEloquent;
+use VCComponent\Laravel\Language\Languages\Language;
+
 
 class LanguageServiceProvider extends ServiceProvider
 {
@@ -36,6 +38,7 @@ class LanguageServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind('language', Language::class);
         $this->app->bind(LanguageRepository::class, LanguageRepositoryEloquent::class);
         $this->app->bind(LanguageableRepository::class, LanguageableRepositoryEloquent::class);
     }

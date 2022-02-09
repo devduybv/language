@@ -9,7 +9,7 @@
     </div>
     <div class="more_lang">
         @foreach($languages as $key=>$data)
-        <div class="lang @if(Session::get('website_language') === $key) selected @endif" data-value='{{$key}}'>
+        <div class="lang @if(Cookie::get('webpress_language') === $key) selected @endif" data-value='{{$key}}'>
             @foreach($data as $key=>$value)
             <span class="flag-icon flag-icon-{{$key}}"></span>
             <span class="lang-txt">{{$value}}</span> @endforeach
@@ -17,40 +17,40 @@
         @endforeach
 
 
-        <!-- <div class="lang  @if(Session::get('website_language')=== 'vn') selected @endif" data-value='vn'>
+        <!-- <div class="lang  @if(Cookie::get('webpress_language')=== 'vn') selected @endif" data-value='vn'>
             <span class="flag-icon flag-icon-vn"></span>
             <span class="lang-txt">Việt Nam</span>
         </div>
 
-        <div class="lang @if(Session::get('website_language')=== 'en') selected @endif" data-value='en'>
+        <div class="lang @if(Cookie::get('webpress_language')=== 'en') selected @endif" data-value='en'>
             <span class="flag-icon flag-icon-us"></span>
             <span class="lang-txt">English<span> (US)</span></span>
         </div>
 
 
-        <div class="lang @if(Session::get('website_language')=== 'de') selected @endif" data-value='de'>
+        <div class="lang @if(Cookie::get('webpress_language')=== 'de') selected @endif" data-value='de'>
             <span class="flag-icon flag-icon-de"></span>
             <span class="lang-txt">Deutsch</span>
         </div>
 
-        <div class="lang @if(Session::get('website_language')=== 'es') selected @endif" data-value='es'>
+        <div class="lang @if(Cookie::get('webpress_language')=== 'es') selected @endif" data-value='es'>
             <span class="flag-icon flag-icon-es"></span>
             <span class="lang-txt">Español</span>
         </div>
 
 
-        <div class="lang @if(Session::get('website_language')=== 'fr') selected @endif" data-value='fr'>
+        <div class="lang @if(Cookie::get('webpress_language')=== 'fr') selected @endif" data-value='fr'>
             <span class="flag-icon flag-icon-fr"></span>
             <span class="lang-txt">Français</span>
         </div>
 
 
-        <div class="lang @if(Session::get('website_language')=== 'pt') selected @endif" data-value="pt">
+        <div class="lang @if(Cookie::get('webpress_language')=== 'pt') selected @endif" data-value="pt">
             <span class="flag-icon flag-icon-pt"></span>
             <span class="lang-txt">Português<span> (BR)</span></span>
         </div>
 
-        <div class="lang @if(Session::get('website_language')=== 'ar') selected @endif" data-value="sa">
+        <div class="lang @if(Cookie::get('webpress_language')=== 'ar') selected @endif" data-value="sa">
             <span class="flag-icon flag-icon-sa"></span>
             <span class="lang-txt">العربية <span> (SA)</span></span>
         </div> -->

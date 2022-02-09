@@ -10,6 +10,7 @@ use VCComponent\Laravel\Language\Transformers\LanguageTransformer;
 use VCComponent\Laravel\Language\Validators\LanguageValidator;
 use VCComponent\Laravel\Vicoders\Core\Controllers\ApiController;
 use VCComponent\Laravel\Vicoders\Core\Exceptions\NotFoundException;
+use Illuminate\Support\Facades\Cookie;
 
 class LanguageController extends ApiController
 {
@@ -110,8 +111,7 @@ class LanguageController extends ApiController
     public function changeLanguage($language)
     {
 
-        Session::put('website_language', $language);
-
+        Cookie::queue(Cookie::forever('webpress_language', $language));
         return $this->success();
     }
 
