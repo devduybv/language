@@ -38,6 +38,6 @@ class Locale
     }
     public function isValidLocale($locale)
     {
-        return in_array($locale, Language::getAvailableLanguages());
+        return in_array($locale, Language::getSupportedLocales());
     }
 }

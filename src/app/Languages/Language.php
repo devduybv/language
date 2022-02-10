@@ -4,8 +4,8 @@ namespace VCComponent\Laravel\Language\Languages;
 
 class Language
 {
-    public function getAvailableLanguages()
+    public function getSupportedLocales()
     {
-        return config('language.list-language');
+        return config('language.supportedLocales');
     }
 }
