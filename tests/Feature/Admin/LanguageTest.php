@@ -72,6 +72,7 @@ class LanguageTest extends TestCase
     public function should_get_language_list_with_order_admin()
     {
         $languages = factory(Language::class, 5)->create();
+
         $languages = $languages->map(function ($language) {
             unset($language['created_at']);
             unset($language['updated_at']);
@@ -82,6 +83,7 @@ class LanguageTest extends TestCase
         array_multisort($listId, SORT_DESC, $languages);
 
         $response = $this->json('GET', 'api/admin/language/all?order_by=' . $order_by);
+
         $response->assertStatus(200);
         $response->assertJson([
             'data' => $languages,

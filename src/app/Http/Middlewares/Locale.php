@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cookie;
 use VCComponent\Laravel\Language\Languages\Facades\Language;
 
+
 class Locale
 {
     /**
@@ -19,6 +20,7 @@ class Locale
     {
         if ($this->hasLanguageQueryParam($request)) {
             $locale = $request->get('lang');
+
         } elseif ($this->hasLanguageCookie()) {
             $locale = Cookie::get('webpress_language');
         }

@@ -108,13 +108,6 @@ class LanguageController extends ApiController
         return $this->success();
     }
 
-    public function changeLanguage($language)
-    {
-
-        Cookie::queue(Cookie::forever('webpress_language', $language));
-        return $this->success();
-    }
-
     // public function bulkUpdateStatus(Request $request)
     // {
     //     $this->repository->bulkUpdateStatus($request);

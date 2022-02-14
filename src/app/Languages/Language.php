@@ -6,6 +6,6 @@ class Language
 {
     public function getSupportedLocales()
     {
-        return config('language.supportedLocales');
+        return config('language.supportsLocales');
     }
 }

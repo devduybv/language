@@ -1,5 +1,4 @@
 <div class="translate_wrapper">
-
     <div class="current_lang">
         <div class="lang">
             <span class="flag-icon flag-icon-gb"></span>
@@ -8,14 +7,24 @@
         </div>
     </div>
     <div class="more_lang">
-        @foreach($languages as $key=>$data)
-        <div class="lang @if(Cookie::get('webpress_language') === $key) selected @endif" data-value='{{$key}}'>
-            @foreach($data as $key=>$value)
-            <span class="flag-icon flag-icon-{{$key}}"></span>
-            <span class="lang-txt">{{$value}}</span> @endforeach
-        </div>
+        @foreach ($languages as $key => $data)
+            <div class="lang
+                @if (Request::has('lang') && in_array(Request::get('lang'), Language::getSupportedLocales()))
+                    @if (Request::get('lang') === $key)
+                        selected
+                    @endif
+                @else
+                    @if (Cookie::get('webpress_language') === $key)
+                        selected
+                    @endif
+                @endif"
+                data-value='{{ $key }}'>
+                @foreach ($data as $key => $value)
+                    <span class="flag-icon flag-icon-{{ $key }}"></span>
+                    <span class="lang-txt">{{ $value }}</span>
+                @endforeach
+            </div>
         @endforeach
-
 
         <!-- <div class="lang  @if(Cookie::get('webpress_language')=== 'vn') selected @endif" data-value='vn'>
             <span class="flag-icon flag-icon-vn"></span>
