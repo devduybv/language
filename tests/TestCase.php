@@ -32,9 +32,6 @@ class TestCase extends OrchestraTestCase
         parent::setUp();
         $this->withFactories(__DIR__ . '/../tests/Stubs/Factory');
         $this->loadMigrationsFrom(__DIR__ . '/../src/database/migrations');
-        // $this->request = Mockery::mock(Request::class);
-
-        // $this->localize = new Localize;
         \Illuminate\Support\Facades\Route::middleware(\VCComponent\Laravel\Language\Http\Middlewares\Locale::class)->any('/', function () {
             return 'OK';
         });
@@ -72,7 +69,7 @@ class TestCase extends OrchestraTestCase
                 'middleware' => '',
             ],
         ]);
-        $app['config']->set('language.supportsLocales', [
+        $app['config']->set('language.supportedLocales', [
             'vi', 'en', 'ja',
         ]);
 

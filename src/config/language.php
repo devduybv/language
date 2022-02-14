@@ -8,7 +8,7 @@ return [
             "code"  => "en",
         ],
     ],
-    'supportsLocales' => [
+    'supportedLocales' => [
         'vi',
         'en',
     ]
